@@ -29,13 +29,14 @@ jobs:
           fetch-depth: 0
 
       - name: Maven Build
+        working-directory: vprofile-project-docker/vprofile-project-docker
         run: mvn install
 
       - name: Upload Build Artifact (WAR)
         uses: actions/upload-artifact@v4
         with:
           name: vprofile-app
-          path: target/*.war
+          path: vprofile-project-docker/vprofile-project-docker/target/*.war
 
       - name: Notify if Build Fails
         if: failure()
